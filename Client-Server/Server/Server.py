@@ -1,4 +1,6 @@
 from socket import*
+from datetime import*
+import random
 
 # CREATE SOCKET
 def create_socket():
@@ -51,6 +53,12 @@ def talk_to_client(conn):
         conn.sendall(str.encode(NUMRIIPORTIT(conn)))
     elif 'BASHKETINGELLORE' in request:
         conn.sendall(str.encode(BASHKETINGELLORE(request)))
+    elif 'PRINTIMI' in request:
+        conn.sendall(str.encode(PRINTIMI(request)))
+    elif request == 'KOHA':
+        conn.sendall(str.encode(KOHA()))
+    elif request == 'LOJA':
+        conn.sendall(str.encode(LOJA()))
 
 
 
@@ -78,17 +86,20 @@ def BASHKETINGELLORE(request):
             consonants = consonants + 1
     return "Teksti i pranuar permban "+str(consonants)+" bashketingellore"
 
-def PRINTIMI():
-    return 0
+def PRINTIMI(request):
+    response = request.replace("PRINTIMI"," ")
+    return response.strip()
+
 
 def EMRIIKOMPJUTERIT():
     return 0 
 
 def KOHA():
-    return 0
+    today = datetime.now()
+    return today.strftime("%d.%m.%Y %I:%M:%S %p")
 
 def LOJA():
-    return 0 
+    return 0
 
 def FIBONACCI():
     return 0 
