@@ -1,6 +1,7 @@
 from socket import*
 from datetime import*
 import random
+from Methods import*
 
 # CREATE SOCKET
 def create_socket():
@@ -59,53 +60,13 @@ def talk_to_client(conn):
         conn.sendall(str.encode(KOHA()))
     elif request == 'LOJA':
         conn.sendall(str.encode(LOJA()))
+    elif request == 'FIBONACCI':
+        conn.sendall(str.encode(FIBONACCI(request)))
 
 
 
-def IPADRESA(conn):
-    clientip, port = conn.getpeername()
-    return "IP Adresa e klientit eshte: "+str(clientip) 
 
 
-def NUMRIIPORTIT(conn):
-    clientip, port = conn.getpeername()
-    return "Klienti eshte duke perdorur portin "+str(port)
-
-def BASHKETINGELLORE(request):
-    vowels = 0
-    consonants = 0
-    word = request.replace("BASHKETINGELLORE"," ")
-
-    for i in word:
-        if(i == 'a' or i == 'e' or i == 'i' or i == 'o' or i == 'u'
-           or i == 'A' or i == 'E' or i == 'I' or i == 'O' or i == 'U'):
-            vowels = vowels + 1
-        elif i == ' ':
-            vowels=vowels+0
-        else:
-            consonants = consonants + 1
-    return "Teksti i pranuar permban "+str(consonants)+" bashketingellore"
-
-def PRINTIMI(request):
-    response = request.replace("PRINTIMI"," ")
-    return response.strip()
-
-
-def EMRIIKOMPJUTERIT():
-    return 0 
-
-def KOHA():
-    today = datetime.now()
-    return today.strftime("%d.%m.%Y %I:%M:%S %p")
-
-def LOJA():
-    return 0
-
-def FIBONACCI():
-    return 0 
-
-def KONVERTIMI():
-    return 0 
 
 
 print("MIRE SE VINI NE FIEK-TCP PROTOKOLLIN")
