@@ -62,6 +62,10 @@ def talk_to_client(conn):
         conn.sendall(str.encode(LOJA()))
     elif 'FIBONACCI' in request:
         conn.sendall(str.encode(FIBONACCI(request)))
+    elif 'KONVERTIMI' in request:
+        conn.sendall(str.encode(KONVERTIMI(request)))
+    else:
+        conn.sendall(str.encode("Kerkesa eshte jo valide!"))
    
 
 

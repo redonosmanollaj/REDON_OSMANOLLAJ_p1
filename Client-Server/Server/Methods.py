@@ -1,5 +1,6 @@
 from random import*
 import array
+import math
 
 def IPADRESA(conn):
     clientip, port = conn.getpeername()
@@ -43,8 +44,28 @@ def LOJA():
         numbers.append(randint(1,49))
     return str(numbers)
 
-def FIBONACCI(request):
-    return 0
 
-def KONVERTIMI():
-    return 0 
+def FIBONACCI(request):
+    n = int(request.replace("FIBONACCI"," "))
+    result = int(((1+sqrt(5))**n-(1-sqrt(5))**n)/(2**n*sqrt(5)))
+    return str(result)
+
+def KONVERTIMI(request):
+    splitedString = request.split()
+    converter = splitedString[1]
+    number = float(splitedString[2])
+    
+    if converter.lower() == "kilowatttohorsepower".lower():
+        return str(number*1.341)
+    elif converter.lower() == "horsepowertokilowatt".lower():
+        return str(number/1.341)
+    elif converter.lower() == "degreestoradians".lower():
+        return str(math.radians(number))
+    elif converter.lower() == "radianstodegrees".lower():
+        return str(math.degrees(number))
+    elif converter.lower() == "gallonstoliters".lower():
+        return str(number*3.78541)
+    elif converter.lower() == "literstogallons".lower():
+        return str(number/3.78541)
+    else:
+        return str("Kerkesa eshte shkruar gabim!")
