@@ -60,8 +60,9 @@ def talk_to_client(conn):
         conn.sendall(str.encode(KOHA()))
     elif request == 'LOJA':
         conn.sendall(str.encode(LOJA()))
-    elif request == 'FIBONACCI':
+    elif 'FIBONACCI' in request:
         conn.sendall(str.encode(FIBONACCI(request)))
+   
 
 
 
