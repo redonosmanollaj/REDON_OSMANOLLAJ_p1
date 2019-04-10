@@ -1,5 +1,4 @@
 from socket import*
-from datetime import*
 import random
 from Methods import*
 
@@ -36,39 +35,40 @@ def accept_connection():
     while True:
         conn, addr = serverSocket.accept()
         print("Connection has been estabilished. IP: "+str(addr[0])+" Port: "+str(addr[1]))
-        talk_to_client(conn)
-        conn.close()
+        while True:
+             talk_to_client(conn)
+    conn.close()
 
 
 # RECEIVING/SENDING  REQUESTS/RESPONSES  FROM/TO CLIENT
 def talk_to_client(conn):
     #question = "Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI)?"
     # conn.send(str.encode(question))
-
-    request = conn.recv(1024)
-    request = request.decode()
+    try:
+        request = conn.recv(1024)
+        request = request.decode()
     
-    if request == 'IPADRESA':
-        conn.sendall(str.encode(IPADRESA(conn)))
-    elif request == 'NUMRIIPORTIT':
-        conn.sendall(str.encode(NUMRIIPORTIT(conn)))
-    elif 'BASHKETINGELLORE' in request:
-        conn.sendall(str.encode(BASHKETINGELLORE(request)))
-    elif 'PRINTIMI' in request:
-        conn.sendall(str.encode(PRINTIMI(request)))
-    elif request == 'KOHA':
-        conn.sendall(str.encode(KOHA()))
-    elif request == 'LOJA':
-        conn.sendall(str.encode(LOJA()))
-    elif 'FIBONACCI' in request:
-        conn.sendall(str.encode(FIBONACCI(request)))
-    elif 'KONVERTIMI' in request:
-        conn.sendall(str.encode(KONVERTIMI(request)))
-    else:
-        conn.sendall(str.encode("Kerkesa eshte jo valide!"))
+        if request == 'IPADRESA':
+            conn.sendall(str.encode(IPADRESA(conn)))
+        elif request == 'NUMRIIPORTIT':
+            conn.sendall(str.encode(NUMRIIPORTIT(conn)))
+        elif 'BASHKETINGELLORE' in request:
+            conn.sendall(str.encode(BASHKETINGELLORE(request)))
+        elif 'PRINTIMI' in request:
+            conn.sendall(str.encode(PRINTIMI(request)))
+        elif request == 'KOHA':
+            conn.sendall(str.encode(KOHA()))
+        elif request == 'LOJA':
+            conn.sendall(str.encode(LOJA()))
+        elif 'FIBONACCI' in request:
+            conn.sendall(str.encode(FIBONACCI(request)))
+        elif 'KONVERTIMI' in request:
+            conn.sendall(str.encode(KONVERTIMI(request)))
+        else:
+            conn.sendall(str.encode("Kerkesa eshte jo valide!"))
+    except:
+        conn.sendall(str.encode("Kerkesa ka gabime sintaksore!  Ju lutem provoni edhe nje here!"))
    
-
-
 
 
 

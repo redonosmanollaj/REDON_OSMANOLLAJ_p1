@@ -7,13 +7,14 @@ clientSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 clientSocket.connect((serverName,port))
 
-varInput = input("Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI)?")
+while True:
+    varInput = input("Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI)?")
 
-clientSocket.sendall(str.encode(varInput))
+    clientSocket.sendall(str.encode(varInput))
 
-varReceive = clientSocket.recv(1024)
+    varReceive = clientSocket.recv(1024)
 
-print(varReceive.decode())
+    print(varReceive.decode())
 
 
 

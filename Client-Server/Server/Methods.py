@@ -1,6 +1,9 @@
 from random import*
+from datetime import*
 import array
-import math
+from math import radians
+from math import degrees
+from math import sqrt
 
 def IPADRESA(conn):
     clientip, port = conn.getpeername()
@@ -27,8 +30,12 @@ def BASHKETINGELLORE(request):
     return "Teksti i pranuar permban "+str(consonants)+" bashketingellore"
 
 def PRINTIMI(request):
-    response = request.replace("PRINTIMI"," ")
-    return response.strip()
+        if len(request)>len("PRINTIMI"):
+            response = request.replace("PRINTIMI"," ")
+            return str(response.strip())
+        else:
+            return str("Nuk ka asgje per tu printuar!")
+
 
 
 def EMRIIKOMPJUTERIT():
@@ -46,9 +53,11 @@ def LOJA():
 
 
 def FIBONACCI(request):
-    n = int(request.replace("FIBONACCI"," "))
-    result = int(((1+sqrt(5))**n-(1-sqrt(5))**n)/(2**n*sqrt(5)))
-    return str(result)
+        n = int(request.replace("FIBONACCI"," "))
+        result = int(((1+sqrt(5))**n-(1-sqrt(5))**n)/(2**n*sqrt(5)))
+        return str(result)
+
+
 
 def KONVERTIMI(request):
     splitedString = request.split()
