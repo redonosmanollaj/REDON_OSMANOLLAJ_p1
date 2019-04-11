@@ -4,6 +4,9 @@ from Methods import*
 from math import radians
 from math import degrees
 from math import sqrt
+from threading import Thread
+
+NUMBER_OF_CLIENTS = int(10)
 
 # CREATE SOCKET
 def create_socket():
@@ -27,9 +30,9 @@ def bind_socket():
         global serverSocket
 
         serverSocket.bind((host,port))
-        serverSocket.listen(10)
+        serverSocket.listen(NUMBER_OF_CLIENTS)
 
-    except socket.error as msg:
+    except error as msg:
         print("Socket binding error "+str(msg)+"Retrying...")
         bind_socket()
 
@@ -40,9 +43,8 @@ def accept_connection():
         print("Connection has been estabilished. IP: "+str(addr[0])+" Port: "+str(addr[1]))
         while True:
              talk_to_client(conn)
-    conn.close()
-
-
+        conn.close()
+    
 # RECEIVING/SENDING  REQUESTS/RESPONSES  FROM/TO CLIENT
 def talk_to_client(conn):
     #question = "Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI)?"
@@ -75,14 +77,31 @@ def talk_to_client(conn):
         conn.sendall(str.encode("Kerkesa ka gabime sintaksore!  Ju lutem provoni edhe nje here!"))
    
 
+# CREATING THREADS
 
 
 
+#print("Server is waiting to connect ...")
+#create_socket()
+#bind_socket()
+#accept_connection()
 
-print("Server is waiting to connect ...")
+
+def handle_connection():
+    print("Server is waiting to connect ...")
+    accept_connection()
+
+
+
+def create_threads():
+    for i in range(NUMBER_OF_CLIENTS):
+        t=Thread(target=handle_connection)
+        t.start()
+
 create_socket()
 bind_socket()
-accept_connection()
+create_threads()
+       
 
 
 
