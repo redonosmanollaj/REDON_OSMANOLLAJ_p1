@@ -1,3 +1,4 @@
+from socket import*
 from random import*
 from datetime import*
 import array
@@ -39,7 +40,11 @@ def PRINTIMI(request):
 
 
 def EMRIIKOMPJUTERIT():
-    return 0 
+    try:
+        computername = str(gethostname())
+        return "Emri i klientit eshte "+str(computername)
+    except error as msg:
+        return "Emri i klientit nuk dihet!"
 
 def KOHA():
     today = datetime.now()
@@ -69,9 +74,9 @@ def KONVERTIMI(request):
     elif converter.lower() == "horsepowertokilowatt".lower():
         return str(number/1.341)
     elif converter.lower() == "degreestoradians".lower():
-        return str(math.radians(number))
+        return str(radians(number))
     elif converter.lower() == "radianstodegrees".lower():
-        return str(math.degrees(number))
+        return str(degrees(number))
     elif converter.lower() == "gallonstoliters".lower():
         return str(number*3.78541)
     elif converter.lower() == "literstogallons".lower():

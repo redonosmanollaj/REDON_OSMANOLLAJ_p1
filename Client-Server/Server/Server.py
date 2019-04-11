@@ -1,6 +1,9 @@
 from socket import*
 import random
 from Methods import*
+from math import radians
+from math import degrees
+from math import sqrt
 
 # CREATE SOCKET
 def create_socket():
@@ -56,6 +59,8 @@ def talk_to_client(conn):
             conn.sendall(str.encode(BASHKETINGELLORE(request)))
         elif 'PRINTIMI' in request:
             conn.sendall(str.encode(PRINTIMI(request)))
+        elif request == 'EMRIIKOMPJUTERIT':
+            conn.sendall(str.encode(EMRIIKOMPJUTERIT()))
         elif request == 'KOHA':
             conn.sendall(str.encode(KOHA()))
         elif request == 'LOJA':
@@ -65,7 +70,7 @@ def talk_to_client(conn):
         elif 'KONVERTIMI' in request:
             conn.sendall(str.encode(KONVERTIMI(request)))
         else:
-            conn.sendall(str.encode("Kerkesa eshte jo valide!"))
+            conn.sendall(str.encode("Kerkesa eshte jo valide! Provoni edhe nje here..."))
     except:
         conn.sendall(str.encode("Kerkesa ka gabime sintaksore!  Ju lutem provoni edhe nje here!"))
    
@@ -74,7 +79,7 @@ def talk_to_client(conn):
 
 
 
-print("MIRE SE VINI NE FIEK-TCP PROTOKOLLIN")
+print("Server is waiting to connect ...")
 create_socket()
 bind_socket()
 accept_connection()
