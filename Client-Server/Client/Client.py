@@ -8,15 +8,17 @@ clientSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 clientSocket.connect((serverName,port))
 
 while True:
-    varInput = input("Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI, PERFUNDO)?\n")
   #  if varInput == "PERFUNDO":
   #      break
-
-    clientSocket.sendall(str.encode(varInput))
-
+   # varInput = input("Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI, PERFUNDO)?\n")
+    
+    #varInput = input("")
     varReceive = clientSocket.recv(1024)
+    varReceive = varReceive.decode()
+    print(varReceive) 
+    if varReceive.endswith("?") | varReceive.endswith(":"):
+        clientSocket.sendall(str.encode(input()))
 
-    print(varReceive.decode())
 
 clientSocket.close()
 

@@ -2,9 +2,11 @@ from socket import*
 from random import*
 from datetime import*
 import array
+import math
 from math import radians
 from math import degrees
 from math import sqrt
+from math import pow
 
 def IPADRESA(conn):
     clientip, port = conn.getpeername()
@@ -83,3 +85,23 @@ def KONVERTIMI(request):
         return str(number/3.78541)
     else:
         return str("Kerkesa eshte shkruar gabim!")
+
+
+# METODA PER ZGJIDHJEN E EKUACIONIT KUADRATIK
+def EKUACIONIKUADRATIK(a,b,c):
+
+    determinant = pow(b, 2)-4*a*c
+    if determinant >= 0 :
+        root1 = (-b+sqrt(determinant))/(2*a)
+        root2 = (-b-sqrt(determinant))/(2*a)
+    if determinant > 0:
+        return "Ekuacioni ka dy zgjidhje reale.\nZgjidhja 1: "+str(root1)+"\nZgjidhja 2: "+str(root2)
+    elif determinant == 0:
+        return "Ekuacioni ka nje zgjidhje reale. \nZgjidhja: "+str(root1)
+    else:
+        return "Ekuacioni nuk ka zgjidhje reale"
+
+
+
+
+

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b7b76aab-4425-410f-97fc-0ea60d2a9220</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Server.py</StartupFile>
+    <StartupFile>Main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Main.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Methods.py">
       <SubType>Code</SubType>
     </Compile>
