@@ -52,7 +52,7 @@ def talk_to_client(conn):
     # conn.send(str.encode(question))
     while True:
         try:
-            conn.sendall(str.encode("Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI, PERFUNDO)?"))
+            conn.sendall(str.encode("Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI, EKUACIONIKUADRATIK, DITELINDJAIME, PERFUNDO)?"))
             request = conn.recv(1024)
             request = request.decode()
     
@@ -90,6 +90,8 @@ def talk_to_client(conn):
                 conn.close()
                 print("Connection with "+str(clientip)+":"+str(port)+" is closed!")
                 sys.exit()
+            elif request == 'DITELINDJAIME':
+                DITELINDJAIME(conn)
             else:
                 conn.sendall(str.encode("Kerkesa eshte jo valide! Provoni edhe nje here..."))
 
