@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Client-Server(TCP)",
+    "\\Client-Server(TCP)\\Client",
+    "\\Client-Server(TCP)\\Server"
   ],
+  "SelectedNode": "\\Client-Server(TCP)\\Server\\main.py",
   "PreviewInSolutionExplorer": false
 }
