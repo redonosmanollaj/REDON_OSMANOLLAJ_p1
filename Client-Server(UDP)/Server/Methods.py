@@ -7,6 +7,7 @@ from math import radians
 from math import degrees
 from math import sqrt
 from math import pow
+from Server import*
 
 def IPADRESA(conn):
     clientip, port = conn.getpeername()
@@ -102,7 +103,7 @@ def EKUACIONIKUADRATIK(a,b,c):
         return "Ekuacioni nuk ka zgjidhje reale"
 
 
-def DITELINDJAIME(conn):
+def DITELINDJAIME(serverSocket,address):
     set1 = str("01 03 05 07\n" +
 		       "09 11 13 15\n" +
 		       "17 19 21 23\n" +
@@ -129,35 +130,35 @@ def DITELINDJAIME(conn):
 			   "28 29 30 31")
     day = 0
     #SET1
-    conn.sendall(str.encode(set1+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"))
-    answer = conn.recv(1024)
-    
-    if answer.decode().lower() == 'po':
+    serverSocket.sendto(str.encode(set1+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"),address)
+    bytesAddressPair = serverSocket.recvfrom(1024)
+    answer = bytesAddressPair[0].decode()
+    if answer.lower() == 'po':
         day = day+1
     #SET2
-    conn.sendall(str.encode(set2+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"))
-    answer = conn.recv(1024)
-    
-    if answer.decode().lower() == 'po':
+    serverSocket.sendto(str.encode(set2+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"),address)
+    bytesAddressPair = serverSocket.recvfrom(1024)
+    answer = bytesAddressPair[0].decode()
+    if answer.lower() == 'po':
         day = day+2
     #SET3
-    conn.sendall(str.encode(set3+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"))
-    answer = conn.recv(1024)
-    
-    if answer.decode().lower() == 'po':
+    serverSocket.sendto(str.encode(set3+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"),address)
+    bytesAddressPair = serverSocket.recvfrom(1024)
+    answer = bytesAddressPair[0].decode()
+    if answer.lower() == 'po':
         day = day+4
     #SET4
-    conn.sendall(str.encode(set4+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"))
-    answer = conn.recv(1024)
-    
-    if answer.decode().lower() == 'po':
+    serverSocket.sendto(str.encode(set4+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"),address)
+    bytesAddressPair = serverSocket.recvfrom(1024)
+    answer = bytesAddressPair[0].decode()
+    if answer.lower() == 'po':
         day = day+8
     #SET5
-    conn.sendall(str.encode(set5+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"))
-    answer = conn.recv(1024)
-    
-    if answer.decode().lower() == 'po':
+    serverSocket.sendto(str.encode(set5+"\nA eshte ditelindja juaj ne kete set (PO ose JO)?"),address)
+    bytesAddressPair = serverSocket.recvfrom(1024)
+    answer = bytesAddressPair[0].decode()
+    if answer.lower() == 'po':
         day = day+16
 
-    conn.sendall(str.encode("\nDitelindja juaj eshte me date "+str(day)+" !"))
+    serverSocket.sendto(str.encode("\nDitelindja juaj eshte me date "+str(day)+" !"),address)
 
