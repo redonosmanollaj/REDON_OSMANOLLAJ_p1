@@ -44,20 +44,7 @@ def handle_connection():
 
         talk_to_client(message,address)
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
 
 # RECEIVING/SENDING  REQUESTS/RESPONSES  FROM/TO CLIENT
 def talk_to_client(request,address):
@@ -65,9 +52,9 @@ def talk_to_client(request,address):
       #  try:
     
             if request == 'IPADRESA':
-                serverSocket.sendto(str.encode(address[0]),address)
+                serverSocket.sendto(str.encode("IP Adresa e klientit eshte: "+address[0]),address)
             elif request == 'NUMRIIPORTIT':
-                serverSocket.sendto(str.encode(str(address[1])),address)
+                serverSocket.sendto(str.encode("Klienti eshte duke perdorur portin "+str(address[1])),address)
             elif 'BASHKETINGELLORE' in request:
                 serverSocket.sendto(str.encode(BASHKETINGELLORE(request)),address)
             elif 'PRINTIMI' in request:
@@ -97,15 +84,11 @@ def talk_to_client(request,address):
                 floatC = float(c.decode())
                 serverSocket.sendto(str.encode(EKUACIONIKUADRATIK(floatA,floatB,floatC)),address)
             elif request == 'PERFUNDO':
-                clientip, port = conn.getpeername()
-                conn.close()
-                print("Connection with "+str(clientip)+":"+str(port)+" is closed!")
                 sys.exit()
             elif request == 'DITELINDJAIME':
                 DITELINDJAIME(serverSocket,address)
             else:
                 serverSocket.sendto(str.encode("Kerkesa eshte jo valide! Provoni edhe nje here..."),address)
-
         #except Exception as ex:
          #   serverSocket.sendto(str.encode("Error! "+ex),address)
 
