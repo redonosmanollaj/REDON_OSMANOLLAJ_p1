@@ -23,13 +23,12 @@ def BASHKETINGELLORE(request):
     word = request.replace("BASHKETINGELLORE"," ")
 
     for i in word:
-        if(i == 'a' or i == 'e' or i == 'i' or i == 'o' or i == 'u'
-           or i == 'A' or i == 'E' or i == 'I' or i == 'O' or i == 'U'):
-            vowels = vowels + 1
-        elif i == ' ':
-            vowels=vowels+0
-        else:
-            consonants = consonants + 1
+        if ((i >= 'A' and i <= 'Z') or (i >= 'a' and i <= 'z')):
+            if(i == 'a' or i == 'e' or i == 'i' or i == 'o' or i == 'u'
+               or i == 'A' or i == 'E' or i == 'I' or i == 'O' or i == 'U' or i == ' '):
+                vowels = vowels + 1
+            else:
+                consonants = consonants + 1
     return "Teksti i pranuar permban "+str(consonants)+" bashketingellore"
 
 def PRINTIMI(request):
@@ -44,9 +43,9 @@ def PRINTIMI(request):
 def EMRIIKOMPJUTERIT():
     try:
         computername = str(gethostname())
-        return "Emri i klientit eshte "+str(computername)
+        return "Emri i kompjuterit eshte "+str(computername)
     except error as msg:
-        return "Emri i klientit nuk dihet!"
+        return "Emri i kompjuterit nuk dihet!"
 
 def KOHA():
     today = datetime.now()
