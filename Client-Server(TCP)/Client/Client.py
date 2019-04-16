@@ -1,23 +1,26 @@
-import socket
 
-serverName = '127.0.0.1'
-port = 12000
+from socket import*
 
-clientSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-
-
+clientSocket = socket(AF_INET,SOCK_STREAM)
 
 serverName = input("Emri i serverit: ")
 port = int(input("Porti: "))
 
-clientSocket.connect((serverName,port))
+try:
+    clientSocket.connect((serverName,port))
+    print("Jeni lidhur me sukses me serverin "+"\'"+str(serverName)+"\'")
+except error as msg:
+    print("Nuk mund te lidheni me kete server! Error: "+str(msg))
 
 while True:
     varReceive = clientSocket.recv(1024)
     varReceive = varReceive.decode()
-    print(varReceive) 
     if varReceive.endswith("?") | varReceive.endswith(":"):
+        print(varReceive)
         clientSocket.sendall(str.encode(input()))
+    else:
+        print(str("\n======================================================================\n")+varReceive+str("\n======================================================================\n")) 
+
 
 
 clientSocket.close()

@@ -50,9 +50,11 @@ def handle_connection():
 def talk_to_client(conn):
     #question = "Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI)?"
     # conn.send(str.encode(question))
+    s = str("Zgjedh njerin nga operacionet: \nIPADRESA \nNUMRIIPORTIT \nBASHKETINGELLORE \nPRINTIMI \nEMRIIKOMPJUTERIT \nKOHA \nLOJA \nFIBONACCI \nKONVERTIMI \nEKUACIONIKUADRATIK \nDITELINDJAIME \nPERFUNDO?")
+    conn.sendall(str.encode(s))
     while True:
+        
         try:
-            conn.sendall(str.encode("Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI, EKUACIONIKUADRATIK, DITELINDJAIME, PERFUNDO)?"))
             request = conn.recv(1024)
             request = request.decode()
     
@@ -95,12 +97,9 @@ def talk_to_client(conn):
             else:
                 conn.sendall(str.encode("Kerkesa eshte jo valide! Provoni edhe nje here..."))
 
+            conn.sendall(str.encode("Lidhja eshte ende e hapur, kerkesa e radhes eshte:"))
         except Exception as ex:
             conn.sendall(str.encode("Error! "+ex))
-
-       
-
-
 
 
 
