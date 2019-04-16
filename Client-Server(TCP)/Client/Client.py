@@ -5,6 +5,11 @@ port = 12000
 
 clientSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
+
+
+serverName = input("Emri i serverit: ")
+port = int(input("Porti: "))
+
 clientSocket.connect((serverName,port))
 
 while True:
