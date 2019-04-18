@@ -45,12 +45,11 @@ def handle_connection():
         t=threading.Thread(target=talk_to_client, args=(conn,))
         t.start()
     conn.close()
+ 
     
 # RECEIVING/SENDING  REQUESTS/RESPONSES  FROM/TO CLIENT
 def talk_to_client(conn):
-    #question = "Operacioni (IPADRESA, NUMRIIPORTIT, BASHKETINGELLORE, PRINTIMI, EMRIIKOMPJUTERIT, KOHA, LOJA, FIBONACCI, KONVERTIMI)?"
-    # conn.send(str.encode(question))
-    s = str("Zgjedh njerin nga operacionet: \nIPADRESA \nNUMRIIPORTIT \nBASHKETINGELLORE \nPRINTIMI \nEMRIIKOMPJUTERIT \nKOHA \nLOJA \nFIBONACCI \nKONVERTIMI \nEKUACIONIKUADRATIK \nDITELINDJAIME \nPERFUNDO?")
+    s = str("\nZgjedh njerin nga operacionet: \nIPADRESA \nNUMRIIPORTIT \nBASHKETINGELLORE \nPRINTIMI \nEMRIIKOMPJUTERIT \nKOHA \nLOJA \nFIBONACCI \nKONVERTIMI (KilowattToHorsepower, HorsepowerToKilowatt, DegreesToRadians, RadiansToDegrees, GallonsToLiters, LitersToGallons) \nEKUACIONIKUADRATIK \nDITELINDJAIME \nPERFUNDO?")
     conn.sendall(str.encode(s))
     while True:
         
@@ -100,12 +99,6 @@ def talk_to_client(conn):
             conn.sendall(str.encode("Lidhja eshte ende e hapur, kerkesa e radhes eshte:"))
         except Exception as ex:
             conn.sendall(str.encode("Error! "+ex))
-
-
-
-
-
-        
 
 
 

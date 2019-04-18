@@ -16,7 +16,7 @@ def create_socket():
         global port 
         global serverSocket
         host=""
-        port=1200
+        port=12000
 
         serverSocket = socket(AF_INET,SOCK_DGRAM)
 

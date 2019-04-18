@@ -3,7 +3,7 @@ from socket import*
 
 clientSocket = socket(AF_INET,SOCK_STREAM)
 
-serverName = input("Emri i serverit: ")
+serverName = str(input("Emri i serverit: "))
 port = int(input("Porti: "))
 
 try:
@@ -17,11 +17,9 @@ while True:
     varReceive = varReceive.decode()
     if varReceive.endswith("?") | varReceive.endswith(":"):
         print(varReceive)
-        clientSocket.sendall(str.encode(input()))
+        clientSocket.sendall(str.encode(input("\n")))
     else:
         print(str("\n======================================================================\n")+varReceive+str("\n======================================================================\n")) 
-
-
 
 clientSocket.close()
 
