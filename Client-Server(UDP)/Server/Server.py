@@ -48,8 +48,7 @@ def handle_connection():
 
 # RECEIVING/SENDING  REQUESTS/RESPONSES  FROM/TO CLIENT
 def talk_to_client(request,address):
-   # while True:
-      #  try:
+        try:
     
             if request == 'IPADRESA':
                 serverSocket.sendto(str.encode("IP Adresa e klientit eshte: "+address[0]),address)
@@ -83,13 +82,13 @@ def talk_to_client(request,address):
                 c = bytesAddressPair[0]
                 floatC = float(c.decode())
                 serverSocket.sendto(str.encode(EKUACIONIKUADRATIK(floatA,floatB,floatC)),address)
-            elif request == 'PERFUNDO':
-                sys.exit()
             elif request == 'DITELINDJAIME':
                 DITELINDJAIME(serverSocket,address)
+            elif request == 'PERFUNDO':
+                return
             else:
                 serverSocket.sendto(str.encode("Kerkesa eshte jo valide! Provoni edhe nje here..."),address)
-        #except Exception as ex:
-         #   serverSocket.sendto(str.encode("Error! "+ex),address)
+        except Exception as ex:
+            serverSocket.sendto(str.encode("Error! "+ex),address)
 
 

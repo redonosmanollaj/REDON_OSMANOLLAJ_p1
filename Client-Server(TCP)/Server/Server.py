@@ -98,9 +98,6 @@ def talk_to_client(conn):
 
             conn.sendall(str.encode("Lidhja eshte ende e hapur, kerkesa e radhes eshte:"))
         except Exception as ex:
-            conn.sendall(str.encode("Error! "+ex))
-
-
-
-
-
+            break
+    print("Connection with: "+str(conn.getpeername()[0])+" has been closed!")
+    conn.close()

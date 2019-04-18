@@ -1,4 +1,5 @@
 import socket
+import sys
 
 ip = input("Emri i serverit: ")
 port = int(input("Porti: "))
@@ -11,8 +12,10 @@ s = str("\nZgjedh njerin nga operacionet: \nIPADRESA \nNUMRIIPORTIT \nBASHKETING
 print(s)
 while True:
 
-    clientSocket.sendto(str.encode(input()),serverName)
-
+    strInput = input()
+    clientSocket.sendto(str.encode(strInput),serverName)
+    if strInput == 'PERFUNDO':
+        sys.exit()
     msgFromServer = clientSocket.recvfrom(1024)
     msg = format(msgFromServer[0].decode())
     if msg.endswith("?") | msg.endswith(":"):

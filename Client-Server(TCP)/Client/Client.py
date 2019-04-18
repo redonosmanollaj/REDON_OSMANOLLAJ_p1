@@ -1,4 +1,4 @@
-
+import sys
 from socket import*
 
 clientSocket = socket(AF_INET,SOCK_STREAM)
@@ -17,7 +17,10 @@ while True:
     varReceive = varReceive.decode()
     if varReceive.endswith("?") | varReceive.endswith(":"):
         print(varReceive)
-        clientSocket.sendall(str.encode(input("\n")))
+        strInput = input("\n")
+        if strInput == 'PERFUNDO':
+            sys.exit(1)
+        clientSocket.sendall(str.encode(strInput))
     else:
         print(str("\n======================================================================\n")+varReceive+str("\n======================================================================\n")) 
 
