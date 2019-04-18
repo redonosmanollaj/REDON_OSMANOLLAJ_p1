@@ -87,10 +87,7 @@ def talk_to_client(conn):
                 floatC = float(c.decode())
                 conn.sendall(str.encode(EKUACIONIKUADRATIK(floatA,floatB,floatC)))
             elif request == 'PERFUNDO':
-                clientip, port = conn.getpeername()
-                conn.close()
-                print("Connection with "+str(clientip)+":"+str(port)+" is closed!")
-                sys.exit()
+                break
             elif request == 'DITELINDJAIME':
                 DITELINDJAIME(conn)
             else:

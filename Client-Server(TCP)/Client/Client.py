@@ -18,9 +18,9 @@ while True:
     if varReceive.endswith("?") | varReceive.endswith(":"):
         print(varReceive)
         strInput = input("\n")
+        clientSocket.sendall(str.encode(strInput))
         if strInput == 'PERFUNDO':
             sys.exit(1)
-        clientSocket.sendall(str.encode(strInput))
     else:
         print(str("\n======================================================================\n")+varReceive+str("\n======================================================================\n")) 
 
